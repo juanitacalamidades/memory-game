@@ -1,29 +1,17 @@
-
-@font-face {
-	font-family: 'w95'; /* Nombre que usarás en CSS */
-	src: url('../fonts/w95fa/w95fa.woff2') format('woff2'),
-		 url('../fonts/w95fa/w95fa.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Manrope', sans-serif;
 }
-
 body {
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
+	/* overflow: hidden; */
 	font-size: 16px;
 }
 
 /*------GRID BACKGROUND------*/
-
-  
 /* Estilos base de cada celda */
 .grid-cell {
 	width: 25px;
@@ -32,50 +20,34 @@ body {
 	border: 0.5px solid rgba(0, 0, 0, .5);
 	transition: background-color 0.1s;
 }
-  
+
 .grid-cell:hover {
 	background-color: hsl(350, 100%, 88%);
 	opacity: 0.8;
 }
 
 /*------MAIN CONTAINER------*/
-
 .container {
-	height: 100%;
+	min-height: 100vh;
+	width: 100vw;
 	display: grid;
 	grid-template-columns: 50px auto 50px;
-	grid-template-rows: 100px auto auto 100px;
+	grid-template-rows: 100px 1fr 1fr 100px;
 }
-
 .textual {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
 }
 
-.img {
-	grid-column: 2 / 3;
-	grid-row: 3 / 4;
-}
-
-.img img {
-	display: block;
-	position: relative;
-	z-index: 1;
-	min-width: 100px;
-	max-width: 50%;
-	/* justify-self: flex-start; */
-}
-
 .title {
 	position: relative;
 	z-index: 1;
-	font-size: 3rem;
+	font-size: 2rem;
 	pointer-events: none;
-	line-height: 3.5rem;
+	line-height: 2.5rem;
 	width: 100%;
 
 }
-
 .subtitle {
 	position: relative;
 	z-index: 1;
@@ -85,8 +57,8 @@ body {
 	margin-bottom: 45px;
 	cursor:default;
 }
-
 .play-button {
+	width: 150px;
 	max-width: 300px;
 	background-color: white;
 	position: relative;
@@ -95,27 +67,86 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px;
+	padding: 5px 10px;
 	margin-left: 10px;
 	box-shadow: -10px 10px  black;
 
 }
-
-
 .play-button p {
-	font-size: 2rem;
+	font-size: 1rem;
 	font-weight: 800;
 }
-
 .play-button:hover {
 	background-color: pink;
-	/* color: white; */
 	cursor: pointer;
 	transform: translate(-10px, 10px);
 	box-shadow: none;
 	transition: all 0.3s ease-in-out;
 }
 
+/*Cubos*/
+.illustration {
+	grid-row: 3 / 4;
+	grid-column: 2 / 3;
+	align-self: center;
+	justify-self: center;
+}
+.scene {
+	perspective: 1000px;
+	perspective-origin: 50% 50%;
+}
+
+.cube {
+	transform-style: preserve-3d;
+	transform: rotateY(-30deg);
+	margin: 0 auto;
+	animation: twirl 20s infinite linear;
+} 
+.cube, .cube > div {
+	height: 100px;
+	width: 100px;
+}
+.face {
+	position: absolute;
+	border: solid 2px black;
+	background: white;
+	opacity: 1;
+}
+.cube .face:nth-child(1) {
+	/* The face widht is 50px width */
+	transform: translateZ(50px);
+}
+.cube .face:nth-child(2) {
+	transform: translateZ(-50px);
+}
+  
+.cube .face:nth-child(3) {
+	transform: translateX(-50px) rotateY(-90deg);
+}
+
+.cube .face:nth-child(4) {
+	transform: translateX(50px) rotateY(-90deg);
+}
+
+.cube .face:nth-child(5) {
+	transform: translateY(-50px) rotateX(-90deg);
+}
+
+.cube .face:nth-child(6) {
+	transform: translateY(50px) rotateX(-90deg);
+}
+
+@keyframes twirl {
+	0% {
+	  transform: rotateX(-45deg) rotateY(0deg);
+	}
+	50% {
+	  transform: rotateX(45deg) rotateY(360deg);
+	}
+	100% {
+	  transform: rotateX(-45deg) rotateY(720deg);
+	}
+}
 /*-----MEDIA QUERIES-----/
 
 /*-----Tablet-----*/
@@ -137,9 +168,48 @@ body {
 	}
 	.play-button {
 		min-width: 300px;
+		padding: 10px;
 	}
+	.play-button p {
+		font-size: 2rem;
+	}
+	.illustration {
+		grid-row: 3 / 4;
+		grid-column: 3 / 4;
+	}
+	.cube {
+		margin: 0;
+	}
+	.cube, .cube > div {
+		height: 200px;
+		width: 200px;
+	  }
+	  .face {
+		position: absolute;
+		border: solid 2px black;
+		background: white;
+		opacity: 1;
+	  }
+	  .cube .face:nth-child(1) {
+		/* The face widht is 100px width */
+		transform: translateZ(100px);
+	  }
+	  .cube .face:nth-child(2) {
+		transform: translateZ(-100px);
+	  }
+	  .cube .face:nth-child(3) {
+		transform: translateX(-100px) rotateY(-90deg);
+	  }
+	  .cube .face:nth-child(4) {
+		transform: translateX(100px) rotateY(-90deg);
+	  }
+	  .cube .face:nth-child(5) {
+		transform: translateY(-100px) rotateX(-90deg);
+	  }
+	  .cube .face:nth-child(6) {
+		transform: translateY(100px) rotateX(-90deg);
+	  }
 }
-
 
 
 /*-----Desktop-----*/
@@ -148,19 +218,13 @@ body {
 		grid-template-columns: 200px auto auto 200px;
 		grid-template-rows: 1fr auto auto 1fr;
 	} 
-	
 	.textual {
 		grid-column: 2 / 3;
 		grid-row: 2 / 3;
 	}
-
-	.img {
-		grid-column: 3 / 4;
+	.illustration {
 		grid-row: 2 / 3;
-	}
-	.img img {
-		justify-self: flex-end;
-		align-self: stretch;
+		grid-column: 3 / 4;
 	}
 
 }

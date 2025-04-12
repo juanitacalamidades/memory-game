@@ -25,4 +25,3 @@ function createGrid() {
 createGrid();
 window.addEventListener("resize", createGrid);
 
-  
