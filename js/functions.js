@@ -1,5 +1,3 @@
-
-
 //Crear grid dinámico: valora las dimensaiones del viewport para generar las celdas necesarias hasta cubrir ancho y alto.
 const tileSize = 25;
 const background = document.querySelector(".background-grid");
@@ -35,4 +33,3 @@ const typeEffect = () => {
     }
 };
 typeEffect();
-

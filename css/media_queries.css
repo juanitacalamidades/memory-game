@@ -1,9 +1,9 @@
-
 /*-----MEDIA QUERIES-----*/
-
 /*-----Tablet-----*/
 @media (min-width: 768px) {
-	.container {
+
+	/* HOME */
+	.home .container {
 		height: 100%;
 		grid-template-columns: 50px auto auto 50px;
 		grid-template-rows: 1fr auto 1fr;
@@ -48,25 +48,34 @@
 		height: 200px;
 		width: 200px;
 	  }
-	  .cube .face:nth-child(1) {
-		/* The face widht is 100px width */
+	  .cube .face-cube:nth-child(1) {
+		/* The face-cube widht is 100px width */
 		transform: translateZ(100px);
 	  }
-	  .cube .face:nth-child(2) {
+	  .cube .face-cube:nth-child(2) {
 		transform: translateZ(-100px);
 	  }
-	  .cube .face:nth-child(3) {
+	  .cube .face-cube:nth-child(3) {
 		transform: translateX(-100px) rotateY(-90deg);
 	  }
-	  .cube .face:nth-child(4) {
+	  .cube .face-cube:nth-child(4) {
 		transform: translateX(100px) rotateY(-90deg);
 	  }
-	  .cube .face:nth-child(5) {
+	  .cube .face-cube:nth-child(5) {
 		transform: translateY(-100px) rotateX(-90deg);
 	  }
-	  .cube .face:nth-child(6) {
+	  .cube .face-cube:nth-child(6) {
 		transform: translateY(100px) rotateX(-90deg);
 	  }
+
+	  /* PLAYGROUND */
+	  .playground .container {
+		display: grid;
+		grid-template-columns: repeat(4, 8rem);
+		grid-template-rows: repeat(3, 8rem);
+		grid-gap: 2rem;
+		perspective: 800px;
+	}
 }
 
 
