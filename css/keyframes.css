@@ -1,0 +1,24 @@
+/*----- Animación del fondo del cubo*/
+@keyframes gradientCube {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/*-----Rotación del cubo-----*/
+@keyframes rotate {
+	0% {
+	  transform: rotateX(-45deg) rotateY(0deg);
+	}
+	50% {
+	  transform: rotateX(45deg) rotateY(360deg);
+	}
+	100% {
+	  transform: rotateX(-45deg) rotateY(720deg);
+	}
+}

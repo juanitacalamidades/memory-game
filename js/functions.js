@@ -1,11 +1,9 @@
 
-//Crear grid dinámico: valora las dimensaiones del viewport para generar las celdas necesarias hasta cubrir ancho y alto.
 
+//Crear grid dinámico: valora las dimensaiones del viewport para generar las celdas necesarias hasta cubrir ancho y alto.
 const tileSize = 25;
 const background = document.querySelector(".background-grid");
-
-
-function createGrid() {
+const createGrid = () => {
   background.innerHTML = ""; // Limpiar grid anterior
 
   const cols = Math.ceil(window.innerWidth / tileSize);
@@ -21,7 +19,20 @@ function createGrid() {
     }
   }
 }
-
 createGrid();
 window.addEventListener("resize", createGrid);
+
+// Efecto máquina de escribir
+const article = "Test you habilities";
+const target = document.querySelector(".subtitle");
+let speed = 100; 
+let i = 0;
+const typeEffect = () => {
+    if(i < article.length) {
+        target.textContent += article.charAt(i);
+        i++;
+        setTimeout(typeEffect, speed)
+    }
+};
+typeEffect();
 
