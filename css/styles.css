@@ -37,6 +37,12 @@ body {
 }
 
 /*------HOME MAIN CONTAINER------*/
+.hidden {
+	opacity: 0;
+}
+.fade-in {
+	animation: fadeIn 1s ease-out forwards;
+}
 .home .container {
 	min-height: 100vh;
 	width: 100vw;
@@ -85,9 +91,6 @@ body {
 	padding: 5px 10px;
 	margin-left: 10px;
 	box-shadow: -5px 5px  black;
-}  
-.play-button:hover::after {
-	opacity: 1;
 }
 .play-button:hover {
 	background-color: #ffc0cb;
@@ -103,18 +106,21 @@ body {
 .play-button::after {
 	content: "Ready to flip?";
 	position: absolute;
-	top: -45px;
+	bottom: -60px;
 	left: 50%;
 	transform: translateX(-50%) rotate(-2deg);
-	background: #ffecb3; /* color tipo post-it */
+	background: #E1BC29;
 	color: #27233A;
 	padding: 5px 10px;
-	font-size: 12px;
-	font-family: 'Courier New', monospace;
+	font-size: 0.8em;
+	font-family: 'Space Grotesk', monospace;
 	border: 1px solid #ccc;
 	box-shadow: 2px 2px 0 #999;
 	opacity: 0;
 	transition: opacity 0.3s;
+}
+.play-button:hover::after {
+	opacity: 1;
 }
 /*Cubos*/
 .illustration {
@@ -122,10 +128,12 @@ body {
 	grid-row: 3 / 4;
 	align-self: center;
 	justify-self: center;
+	animation: grow 2s linear;
 }
 .scene {
 	perspective: 1000px;
 	perspective-origin: 50% 50%;
+
 }
 .cube {
 	transform-style: preserve-3d;
@@ -143,7 +151,7 @@ body {
 .face-cube {
 	position: absolute;
 	border: solid 1.1px #000;
-	background: linear-gradient(-45deg, rgba(158, 238, 250, .3), transparent, white );
+	background: linear-gradient(-45deg, #5DFDCB, transparent, white );
 	background-size: 400% 400%;
 	animation: gradientCube 10s ease infinite;
 	opacity: 1;
@@ -175,6 +183,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column-reverse;
+	gap: 50px;
 }
 .playground nav {
 	position: fixed;
@@ -185,7 +194,6 @@ body {
 	padding: 50px 0;
 	z-index: 3;
 }
-
 .playground .container {
 	display: grid;
 	grid-template-columns: repeat(3, 4rem);
@@ -212,32 +220,44 @@ body {
 	background: #E1BC29;
 	backface-visibility: hidden;
 }
+.back::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 200%;
+	height: 100%;
+	background: linear-gradient(
+	  90deg,
+	  transparent 0%,
+	  rgba(255, 255, 255, 0.3) 50%,
+	  transparent 100%
+	);
+	animation: shine linear 3s infinite alternate;
+	pointer-events: none;
+}
 .toggleCard {
 	transform: rotateY(180deg);
 }
-/*------FOOTER------*/
-footer {
-	position: fixed;
-	bottom: 0;
-	right: 0;
+.player-info {
+	max-width: 100%;
 	display: flex;
-	padding-bottom: 15px;
-	margin-right: 25px;
-	gap: 15px;
+	align-items: center;
+	gap: 20px;
 }
-footer p {
-	font-size: 0.9rem;
+.playerLivesCount {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 }
-footer #heart {
+.heart {
 	display: inline-block;
 	position: relative;
-	/* top: 0px;
-	right: 0px; */
 	width: 20px;
-	height: auto;
+	height: 18px;
   }
-  footer #heart:before,
-  footer #heart:after {
+.heart:before,
+.heart:after {
 	position: absolute;
 	content: "";
 	left: 9px;
@@ -249,8 +269,23 @@ footer #heart {
 	transform: rotate(-45deg);
 	transform-origin: 0 100%;
   }
-  footer #heart:after {
+.heart:after {
 	left: 0;
 	transform: rotate(45deg);
 	transform-origin: 100% 100%;
-  }
+}
+
+/*------FOOTER------*/
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	padding-bottom: 15px;
+	margin-right: 25px;
+	gap: 15px;
+	pointer-events: none;
+}
+footer p {
+	font-size: 0.9rem;
+}

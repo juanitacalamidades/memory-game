@@ -5,8 +5,17 @@ const section = document.querySelector(".container");
 const playerLivesCount = document.querySelector(".playerLivesCount");
 let playerLives = 6;
 
-//Link text
-playerLivesCount.textContent = playerLives;
+const renderLives = () => {
+    playerLivesCount.innerHTML = '';
+    for (let i = 0; i < playerLives; i++) {
+      const heart = document.createElement("span");
+      heart.classList.add("heart");
+      playerLivesCount.appendChild(heart);
+    }
+};
+ 
+  
+// playerLivesCount.textContent = playerLives;
 
 //Generar las cartas
 // 10 cards en total
@@ -34,6 +43,7 @@ const randomize = () => {
 
 //Generar cartas en el DOM
 const cardGenerator = () => {
+    renderLives();
     const cardData = randomize();
     //Generate the HTML
     cardData.forEach(item => {
@@ -72,6 +82,7 @@ const checkCards = (e) => {
     clickedCard.classList.add("flipped");
 
     const flippedCards = document.querySelectorAll(".flipped");
+    const toggleCards = document.querySelectorAll(".toggleCard");
 
     if(flippedCards.length === 2) {
         const isMatch =
@@ -82,6 +93,7 @@ const checkCards = (e) => {
             console.log("match");
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
+                card.classList.add("toggleCard");
                 card.style.pointerEvents = "none";
             });
         } else {
@@ -93,22 +105,43 @@ const checkCards = (e) => {
                 });
             }, 600);
             playerLives--;
-            playerLivesCount.textContent = playerLives;
+            renderLives();
+            // playerLivesCount.textContent = playerLives;
             if(playerLives === 0) {
                 restart();
             }
           
         }
     }
+    checkWin();
 };
-
+//Comprobar si hemos ganado
+const checkWin = () => {
+    const matchedCards = document.querySelectorAll(".toggleCard");
+    if (matchedCards.length === 12) {
+        console.log("has ganado");
+        
+    }
+};
 //Reiniciar
 const restart = () => {
-    console.log("en restart");
-    section.innerHTML = ''; // Limpiar todas las cartas
+    console.log("en restart")
+    let cardData = randomize();
+    let faces = document.querySelectorAll(".face");
+    let cards = document.querySelectorAll(".card");
+    section.style.pointerEvents = "all";
+    cardData.forEach((item, index) => {
+        cards[index].classList.remove("toggleCard");
+        //Adjuntar la info a las cartas para la nueva distribución
+        setTimeout(() => {
+            cards[index].style.pointerEvents = "all";
+            faces[index].src = item.imgSrc;
+            cards[index].setAttribute("name", item.name);
+            section.style.pointerEvents = "all";
+        }, 1000)
+    });
     playerLives = 6;
     playerLivesCount.textContent = playerLives;
-    cardGenerator(); // Generar cartas nuevas con imágenes nuevas
 }
 
 cardGenerator();
