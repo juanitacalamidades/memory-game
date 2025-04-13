@@ -104,22 +104,11 @@ const checkCards = (e) => {
 
 //Reiniciar
 const restart = () => {
-    console.log("en restart")
-    let cardData = randomize();
-    let cards = document.querySelectorAll(".card");
-    section.style.pointerEvents = "all";
-    cardData.forEach((item, index) => {
-        cards[index].classList.remove("toggleCard");
-        //Adjuntar la info a las cartas para la nueva distribución
-        setTimeout(() => {
-            cards[index].style.pointerEvents = "all";
-            faces[index].src = item.imgSrc;
-            cards[index].setAttribute("name", item.name);
-            section.style.pointerEvents = "all";
-        }, 1000)
-    });
+    console.log("en restart");
+    section.innerHTML = ''; // Limpiar todas las cartas
     playerLives = 6;
     playerLivesCount.textContent = playerLives;
+    cardGenerator(); // Generar cartas nuevas con imágenes nuevas
 }
 
 cardGenerator();
