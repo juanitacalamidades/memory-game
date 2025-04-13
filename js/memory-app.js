@@ -2,13 +2,13 @@
 //Memory Game Lógica
 
 const section = document.querySelector(".container");
-const playerLivesCount = document.querySelector("span");
+const playerLivesCount = document.querySelector(".playerLivesCount");
 let playerLives = 6;
 
 //Link text
 playerLivesCount.textContent = playerLives;
 
-//Generar las cards
+//Generar las cartas
 // 10 cards en total
 const getData = () => [
     {imgSrc: './img/Cubo.png', name: "cubo"},
@@ -25,14 +25,14 @@ const getData = () => [
     {imgSrc: './img/Esfera.png', name: "esfera"}
 ];
 
-//Randomize cards
+// Barajar las cartas
 const randomize = () => {
     const cardData = getData();
     cardData.sort(()=> Math.random() - 0.5);
     return cardData;
 };
 
-//Card Generator Function
+//Generar cartas en el DOM
 const cardGenerator = () => {
     const cardData = randomize();
     //Generate the HTML
@@ -44,10 +44,10 @@ const cardGenerator = () => {
         card.classList = 'card';
         face.classList = 'face';
         back.classList = 'back';
-        //Attach info to cards
+        //Adjuntar imagen y nombre a las cartas
         face.src = item.imgSrc;
         card.setAttribute('name', item.name);
-        //Attach the cards to the screen
+        //Adjuntar cartas al DOM 
         section.appendChild(card);
         card.appendChild (face);
         card.appendChild (back);
@@ -59,7 +59,7 @@ const cardGenerator = () => {
     });
 
 };
-//Check cards
+//Comprobar cartas iguales
 const checkCards = (e) => {
     const clickedCard = e.target;
     
@@ -73,12 +73,12 @@ const checkCards = (e) => {
 
     const flippedCards = document.querySelectorAll(".flipped");
 
-    if (flippedCards.length === 2) {
+    if(flippedCards.length === 2) {
         const isMatch =
             flippedCards[0].getAttribute('name') ===
             flippedCards[1].getAttribute('name');
 
-        if (isMatch) {
+        if(isMatch) {
             console.log("match");
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
@@ -94,8 +94,32 @@ const checkCards = (e) => {
             }, 600);
             playerLives--;
             playerLivesCount.textContent = playerLives;
+            if(playerLives === 0) {
+                restart();
+            }
+          
         }
     }
 };
+
+//Reiniciar
+const restart = () => {
+    console.log("en restart")
+    let cardData = randomize();
+    let cards = document.querySelectorAll(".card");
+    section.style.pointerEvents = "all";
+    cardData.forEach((item, index) => {
+        cards[index].classList.remove("toggleCard");
+        //Adjuntar la info a las cartas para la nueva distribución
+        setTimeout(() => {
+            cards[index].style.pointerEvents = "all";
+            faces[index].src = item.imgSrc;
+            cards[index].setAttribute("name", item.name);
+            section.style.pointerEvents = "all";
+        }, 1000)
+    });
+    playerLives = 6;
+    playerLivesCount.textContent = playerLives;
+}
 
 cardGenerator();

@@ -10,6 +10,15 @@
 		background-position: 0% 50%;
 	}
 }
+/*-----Brillo del texto-----*/
+@keyframes shimmer-light {
+	0% {
+	  left: -100%;
+	}
+	100% {
+	  left: 100%;
+	}
+  }
 /*-----Rotación del cubo-----*/
 @keyframes rotate {
 	0% {

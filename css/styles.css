@@ -4,7 +4,9 @@
 	box-sizing: border-box;
 	font-family: 'Space Grotesk', sans-serif;
 	text-decoration: none;
-	color: initial;
+}
+a {
+	color: inherit;
 }
 body {
 	width: 100vw;
@@ -25,7 +27,7 @@ body {
 	width: 25px;
 	height: 25px;
 	position: absolute;
-	border: 0.5px solid rgba(0, 0, 0, .5);
+	border: 0.5px solid rgba(39, 35, 58, .5);
 	transition: background-color 0.1s;
 }
 
@@ -64,7 +66,7 @@ body {
 	position: relative;
 	z-index: 1;
 	font-size: 1.2rem;
-	letter-spacing: 5px;
+	letter-spacing: 0.2rem;
 	text-transform: uppercase;
 	margin-top: 30px;
 	margin-bottom: 45px;
@@ -88,7 +90,7 @@ body {
 	opacity: 1;
 }
 .play-button:hover {
-	background-color: pink;
+	background-color: #ffc0cb;
 	cursor: pointer;
 	transform: translate(-10px, 10px);
 	box-shadow: none;
@@ -105,7 +107,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%) rotate(-2deg);
 	background: #ffecb3; /* color tipo post-it */
-	color: #333;
+	color: #27233A;
 	padding: 5px 10px;
 	font-size: 12px;
 	font-family: 'Courier New', monospace;
@@ -140,8 +142,8 @@ body {
 }
 .face-cube {
 	position: absolute;
-	border: solid 2px #000;
-	background: linear-gradient(-45deg, #9EEEFA, transparent, white );
+	border: solid 1.1px #000;
+	background: linear-gradient(-45deg, rgba(158, 238, 250, .3), transparent, white );
 	background-size: 400% 400%;
 	animation: gradientCube 10s ease infinite;
 	opacity: 1;
@@ -170,12 +172,21 @@ body {
 .playground {
 	height: 100vh;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 	flex-direction: column-reverse;
 }
+.playground nav {
+	position: fixed;
+	top: 0;
+	left: 10px;
+	display: flex;
+	margin-left: 25px;
+	padding: 50px 0;
+	z-index: 3;
+}
+
 .playground .container {
-	/* min-height: 100%; */
 	display: grid;
 	grid-template-columns: repeat(3, 4rem);
 	grid-template-rows: repeat(4, 4rem);
@@ -198,9 +209,48 @@ body {
 	pointer-events: none;
 }
 .back {
-	background: red;
+	background: #E1BC29;
 	backface-visibility: hidden;
 }
 .toggleCard {
 	transform: rotateY(180deg);
 }
+/*------FOOTER------*/
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	padding-bottom: 15px;
+	margin-right: 25px;
+	gap: 15px;
+}
+footer p {
+	font-size: 0.9rem;
+}
+footer #heart {
+	display: inline-block;
+	position: relative;
+	/* top: 0px;
+	right: 0px; */
+	width: 20px;
+	height: auto;
+  }
+  footer #heart:before,
+  footer #heart:after {
+	position: absolute;
+	content: "";
+	left: 9px;
+	top: 0;
+	width: 10px;
+	height: 15px;
+	background: red;
+	border-radius: 50px 50px 0 0;
+	transform: rotate(-45deg);
+	transform-origin: 0 100%;
+  }
+  footer #heart:after {
+	left: 0;
+	transform: rotate(45deg);
+	transform-origin: 100% 100%;
+  }
