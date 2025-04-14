@@ -150,7 +150,7 @@ const checkCards = async (e) => {
                 });
 
                 // Espera un poco para que se vea el efecto
-                await wait(1000);
+                await wait(600);
                 await showRestartButton();
             }
           
@@ -161,7 +161,7 @@ const checkCards = async (e) => {
 //Comprobar si hemos ganado
 const checkWin = () => {
     const matchedCards = document.querySelectorAll(".toggleCard");
-    if (matchedCards.length === 12) {
+    if (matchedCards.length === 10) {
         console.log("has ganado");
         
     }

@@ -2,6 +2,8 @@
 	--color-bright-pink: #FD5D78;
 	--color-naples-yellow: #FDDD5D;
 	--color-aquamarine: #5DFDCB;
+	--color-tyrian-purple: #5F1A37;
+	--color-scarlet: #FF220C;
 }
 * {
 	margin: 0;
@@ -278,6 +280,7 @@ body {
 .back {
 	background: var(--color-naples-yellow);
 	backface-visibility: hidden;
+	overflow: hidden;
 }
 .back::before {
 	content: '';
@@ -312,7 +315,8 @@ body {
 				3px 3px black, 
 				4px 4px black, 
 				5px 5px black;
-    transform: translateZ(5px) scale(1.1);
+	transition: all 0.3s ease-in-out;
+    transform: translateZ(5px);
 }
 .player-info div {
 	width: 100%;
@@ -326,11 +330,8 @@ body {
 .restart:hover {
 	background-color: var(--color-bright-pink);
 	cursor: pointer;
-	transform: translate(5px, 5px);
+	transform: translate(10px, 10px);
 	box-shadow: none;
-	transition: transform 0.3s ease-in-out;
-	box-shadow: none;
-
 }
 .player-info h2 {
 	font-size: 1rem;
@@ -346,7 +347,7 @@ body {
 	position: relative;
 	width: 20px;
 	height: 15px;
-  }
+}
 .heart:before,
 .heart:after {
 	position: absolute;
@@ -355,11 +356,11 @@ body {
 	top: 0;
 	width: 10px;
 	height: 15px;
-	background: red;
+	background: var(--color-scarlet);
 	border-radius: 50px 50px 0 0;
 	transform: rotate(-45deg);
 	transform-origin: 0 100%;
-  }
+}
 .heart:after {
 	left: 0;
 	transform: rotate(45deg);

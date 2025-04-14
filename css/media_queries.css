@@ -1,4 +1,12 @@
+/*
+Los estilos generales están escritos para mobile viewports. 
+Aunque no está especificado, se visualizan a partir de 375px min-width.
+
+A continuación, están los media queries para tablet, desktop. 
+*/
+
 /*-----MEDIA QUERIES-----*/
+
 /*-----Tablet-----*/
 @media (min-width: 768px) {
 
@@ -80,18 +88,26 @@
 
 	  /* PLAYGROUND */
 	  .playground {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		overflow: hidden;
+		width: 100vw;
+		gap: 50px;
 		flex-direction: row-reverse;
-		gap: 100px;
+
 	}
-	  .playground .container {
+	.playground .container {
 		display: grid;
 		grid-template-columns: repeat(4, 8rem);
 		grid-template-rows: repeat(3, 8rem);
 		grid-gap: 2rem;
+		/* margin-top: 60px; */
 		perspective: 800px;
+	}
+	.restart-button {
+		min-width: 250px;
+		max-width: 100%
+	}
+	.restart-button p {
+		text-align: center;
 	}
 }
 
@@ -110,4 +126,3 @@
 		letter-spacing: 0.3rem;
 	}
 }
-
