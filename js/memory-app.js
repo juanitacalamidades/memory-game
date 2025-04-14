@@ -8,6 +8,34 @@ const stats = document.querySelector(".stats");
 const restartButton = document.createElement("p");
 let playerLives = 6;
 
+//Helper
+const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+//Mostrar el botón
+const showRestartButton = async () => {
+    await wait(500); // espera opcional para animaciones
+  
+    // Oculta stats
+    stats.style.display = "none";
+  
+    // Crea el botón
+    const restartButton = document.createElement("p");
+    restartButton.textContent = "Restart";
+    playerInfo.classList.add("restart-button", "restart"); // para mantener hover
+  
+    // Inserta el botón en el mismo lugar
+    stats.parentElement.appendChild(restartButton);
+  
+    // Evento de reinicio
+    restartButton.addEventListener("click", () => {
+    restartButton.remove();
+    playerInfo.classList.remove("restart-button", "restart");
+      
+    restart();
+    });
+};
+
+//Mostrar vidas
 const renderLives = () => {
     playerLivesCount.innerHTML = '';
     for (let i = 0; i < playerLives; i++) {
@@ -15,9 +43,7 @@ const renderLives = () => {
       heart.classList.add("heart");
       playerLivesCount.appendChild(heart);
     }
-
 };
- 
 
 //Generar las cartas
 // 10 cards en total
@@ -56,9 +82,11 @@ const cardGenerator = () => {
         card.classList.add('card');
         face.classList.add('face');
         back.classList.add('back');
+
         //Adjuntar imagen y nombre a las cartas
         face.src = item.imgSrc;
         card.setAttribute('name', item.name);
+
         //Adjuntar cartas al DOM 
         section.appendChild(card);
         card.appendChild (face);
@@ -71,8 +99,9 @@ const cardGenerator = () => {
     });
 
 };
+
 //Comprobar cartas iguales
-const checkCards = (e) => {
+const checkCards = async (e) => {
     const clickedCard = e.target;
     
     // Evita clics múltiples sobre la misma carta o cartas ya deshabilitadas
@@ -108,15 +137,21 @@ const checkCards = (e) => {
             }, 600);
             playerLives--;
             renderLives();
-            // playerLivesCount.textContent = playerLives;
+    
             if(playerLives === 0) {
-                // playerInfo.textContent = "";
+                await wait(600); // espera a que setTimeout de las cartas fallidas termine
+
+                const allCards = document.querySelectorAll(".card");
               
-                restartButton.textContent = "Restart";
-                playerInfo.classList.add("restart");
-                playerInfo.appendChild(restartButton);
-                stats.style.display = "none";
-                playerInfo.addEventListener("click", restart);
+                allCards.forEach(card => {
+                  card.classList.add("toggleCard");
+                  card.classList.remove("flipped");
+                  card.style.pointerEvents = "none";
+                });
+
+                // Espera un poco para que se vea el efecto
+                await wait(1000);
+                await showRestartButton();
             }
           
         }
@@ -133,10 +168,7 @@ const checkWin = () => {
 };
 //Reiniciar
 const restart = () => {
-
-
-    restartButton.style.display = "none";
-    playerInfo.classList.remove("restart");
+    stats.style.display = "flex";
     let cardData = randomize();
     let faces = document.querySelectorAll(".face");
     let cards = document.querySelectorAll(".card");
