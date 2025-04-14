@@ -1,6 +1,8 @@
 //Crear grid dinámico: valora las dimensaiones del viewport para generar las celdas necesarias hasta cubrir ancho y alto.
 const tileSize = 25;
 const background = document.querySelector(".background-grid");
+
+
 const createGrid = () => {
   background.innerHTML = ""; // Limpiar grid anterior
 
@@ -20,8 +22,38 @@ const createGrid = () => {
 createGrid();
 window.addEventListener("resize", createGrid);
 
+
+//Celda en relieve
+const randomPop = () => {
+  const randomIndex = Math.floor(Math.random() * cells.length);
+  const selected = cells[randomIndex];
+
+  selected.classList.add("pop-forward");
+
+  setTimeout(() => {
+    selected.classList.remove('pop-forward')
+  }, 1000);
+};
+
+
+//Invocar la función cada cierto tiempo
+setInterval(randomPop, 3000);
+
+const cells = document.querySelectorAll('.grid-cell');
+cells.forEach((item) => {
+  item.addEventListener('click', () => {
+    console.log(item); // para verificar
+    item.classList.add('pop-forward');
+
+    setTimeout(() => {
+      item.classList.remove('pop-forward');
+    }, 800); // o el tiempo que dure la animación
+  });
+});
+
+
 // Efecto máquina de escribir
-const article = "Test you habilities";
+const article = "Test your habilities";
 const target = document.querySelector(".subtitle");
 let speed = 100; 
 let i = 0;
@@ -33,3 +65,20 @@ const typeEffect = () => {
     }
 };
 typeEffect();
+
+// Crear footer
+
+const createFooter = () => {
+  const body = document.querySelector("body");
+  const footer = document.createElement("footer");
+  const text = document.createElement("p");
+  const heart = document.createElement("span");
+
+  text.textContent = "Powered by Yoanna Rodionova"
+  heart.classList.add("heart");
+  body.appendChild(footer);
+  footer.appendChild(text);
+  footer.appendChild(heart);
+}
+//Retrasar la ejecución hasta que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", createFooter);

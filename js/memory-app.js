@@ -3,6 +3,9 @@
 
 const section = document.querySelector(".container");
 const playerLivesCount = document.querySelector(".playerLivesCount");
+const playerInfo = document.querySelector(".player-info");
+const stats = document.querySelector(".stats");
+const restartButton = document.createElement("p");
 let playerLives = 6;
 
 const renderLives = () => {
@@ -12,10 +15,9 @@ const renderLives = () => {
       heart.classList.add("heart");
       playerLivesCount.appendChild(heart);
     }
+
 };
  
-  
-// playerLivesCount.textContent = playerLives;
 
 //Generar las cartas
 // 10 cards en total
@@ -51,9 +53,9 @@ const cardGenerator = () => {
         const card = document.createElement("div");
         const face = document.createElement("img");
         const back = document.createElement('div');
-        card.classList = 'card';
-        face.classList = 'face';
-        back.classList = 'back';
+        card.classList.add('card');
+        face.classList.add('face');
+        back.classList.add('back');
         //Adjuntar imagen y nombre a las cartas
         face.src = item.imgSrc;
         card.setAttribute('name', item.name);
@@ -108,7 +110,13 @@ const checkCards = (e) => {
             renderLives();
             // playerLivesCount.textContent = playerLives;
             if(playerLives === 0) {
-                restart();
+                // playerInfo.textContent = "";
+              
+                restartButton.textContent = "Restart";
+                playerInfo.classList.add("restart");
+                playerInfo.appendChild(restartButton);
+                stats.style.display = "none";
+                playerInfo.addEventListener("click", restart);
             }
           
         }
@@ -125,10 +133,14 @@ const checkWin = () => {
 };
 //Reiniciar
 const restart = () => {
-    console.log("en restart")
+
+
+    restartButton.style.display = "none";
+    playerInfo.classList.remove("restart");
     let cardData = randomize();
     let faces = document.querySelectorAll(".face");
     let cards = document.querySelectorAll(".card");
+    stats.style.display = "flex";
     section.style.pointerEvents = "all";
     cardData.forEach((item, index) => {
         cards[index].classList.remove("toggleCard");
@@ -141,7 +153,7 @@ const restart = () => {
         }, 1000)
     });
     playerLives = 6;
-    playerLivesCount.textContent = playerLives;
+    renderLives();
 }
 
 cardGenerator();
