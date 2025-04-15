@@ -127,6 +127,7 @@ A continuación, están los media queries para tablet, desktop.
 		letter-spacing: 0.3rem;
 	}
 	.playground {
+		gap: 50px;
 		flex-direction: row-reverse;
 	}
 	.stats h2 {
