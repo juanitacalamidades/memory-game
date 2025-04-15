@@ -59,9 +59,6 @@ body {
 				-5px 5px black;
 	z-index: 10;
 }
-.grid-cell:hover {
-	background-color: hsl(350, 100%, 88%); /* default pink */
-}
 
 /*------HOME MAIN CONTAINER------*/
 .home .container {
@@ -110,6 +107,7 @@ body {
 	align-items: center;
 	padding: 5px 10px;
 	margin-left: 10px;
+	overflow: hidden;
 	box-shadow: 
 				-1px 1px black,
 				-2px 2px black,
@@ -146,6 +144,18 @@ body {
 }
 .play-button:hover::after {
 	opacity: 1;
+}
+.play-button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background-color: var(--color-bright-pink);
+	z-index: -1;
+	animation: reveal 1s 0.8s 1 ease-out forwards;
+	
 }
 /*Cubos*/
 .illustration {
@@ -245,7 +255,7 @@ body {
 	left: -100%;
 	width: 100%;
 	height: 100%;
-	background-color: var(--color-aquamarine); /* o el color que prefieras */
+	background-color: var(--color-bright-pink); /* o el color que prefieras */
 	z-index: -1;
 	transition: left 0.4s ease;
 }
@@ -302,7 +312,6 @@ body {
 	transform: rotateY(180deg);
 }
 .player-info {
-	min-width: 250px;
 	border: 2px solid black;
 	background-color: white;
 	position: relative;
@@ -318,17 +327,20 @@ body {
 	transition: all 0.3s ease-in-out;
     transform: translateZ(5px);
 }
-.player-info div {
-	width: 100%;
+.player-info stats {
+	min-width: 150px;
 	display: flex;
 	align-items: center;
 }
-.restart-button {
+.restart-button p {
+	text-align: center;
+}
+/* .restart-button {
 	min-width: auto;
 	max-width: 100%
-}
+} */
 .restart:hover {
-	background-color: var(--color-bright-pink);
+	background-color: var(--color-naples-yellow);
 	cursor: pointer;
 	transform: translate(10px, 10px);
 	box-shadow: none;
@@ -366,7 +378,37 @@ body {
 	transform: rotate(45deg);
 	transform-origin: 100% 100%;
 }
-
+.board {
+	width: 250px;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 15px;
+}
+.message {
+	position: relative;
+	
+}
+.message p {
+	pointer-events: none;
+	font-size: 1.5rem;
+	text-align: center;
+	padding: 10px;
+	border: 2px solid black;
+	box-shadow: 1px 1px black,
+				2px 2px black,
+				3px 3px black, 
+				4px 4px black, 
+				5px 5px black;
+}
+.win {
+	background-color: var(--color-aquamarine);
+	color: white;
+}
+.lose {
+	background-color: var(--color-scarlet);
+	color: white;
+}
+  
 /*------FOOTER------*/
 footer {
 	position: fixed;

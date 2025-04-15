@@ -22,7 +22,6 @@ const createGrid = () => {
 createGrid();
 window.addEventListener("resize", createGrid);
 
-
 //Celda en relieve
 const randomPop = () => {
   const randomIndex = Math.floor(Math.random() * cells.length);
@@ -37,20 +36,51 @@ const randomPop = () => {
 
 
 //Invocar la función cada cierto tiempo
-setInterval(randomPop, 3000);
+setInterval(randomPop, 1000);
 
-const cells = document.querySelectorAll('.grid-cell');
-cells.forEach((item) => {
-  item.addEventListener('click', () => {
-    console.log(item); // para verificar
-    item.classList.add('pop-forward');
+
+// Generar color de fondo aleatorio
+const setRandomBackground = (element, colors = ['#FD5D78','#FDDD5D','#5DFDCB','#5F1A37','#FF220C']) => {
+  if (!element) return;
+  
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  const randomColor = colors[randomIndex];
+  
+  element.style.backgroundColor = randomColor;
+};
+
+background.addEventListener("click", (e) => {
+  if (e.target.classList.contains("grid-cell")) {
+    const cell = e.target;
+    cell.classList.add("pop-forward");
 
     setTimeout(() => {
-      item.classList.remove('pop-forward');
-    }, 800); // o el tiempo que dure la animación
-  });
+      setRandomBackground(cell);
+    }, 100);
+
+    setTimeout(() => {
+      cell.classList.remove("pop-forward");
+    }, 800);
+  }
 });
 
+// "Levantar" la celda
+// const cells = document.querySelectorAll('.grid-cell');
+// cells.forEach((item) => {
+//   item.addEventListener('click', () => {
+//     item.classList.add('pop-forward');
+//     setTimeout(() => {
+//       setRandomBackground(item);
+
+//     }, 100)
+
+//     setTimeout(() => {
+//       item.classList.remove('pop-forward');
+//     }, 800); // o el tiempo que dure la animación
+
+//   });
+
+// });
 
 // Efecto máquina de escribir
 const article = "Test your habilities";

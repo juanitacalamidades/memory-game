@@ -90,8 +90,7 @@ A continuación, están los media queries para tablet, desktop.
 	  .playground {
 		overflow: hidden;
 		width: 100vw;
-		gap: 50px;
-		flex-direction: row-reverse;
+		gap: 30px;
 
 	}
 	.playground .container {
@@ -99,8 +98,11 @@ A continuación, están los media queries para tablet, desktop.
 		grid-template-columns: repeat(4, 8rem);
 		grid-template-rows: repeat(3, 8rem);
 		grid-gap: 2rem;
-		/* margin-top: 60px; */
+		margin-top: 60px;
 		perspective: 800px;
+	}
+	.player-info .stats {
+		min-width: 150px;
 	}
 	.restart-button {
 		min-width: 250px;
@@ -114,9 +116,8 @@ A continuación, están los media queries para tablet, desktop.
 
 /*-----Desktop-----*/
 @media (min-width: 1200px) {
-	 .container {
+	.container {
 		grid-template-columns: 200px auto auto 200px;
-	
 	} 
 	.textual {
 		grid-column: 2 / 3;
@@ -124,5 +125,15 @@ A continuación, están los media queries para tablet, desktop.
 	}
 	.subtitle{
 		letter-spacing: 0.3rem;
+	}
+	.playground {
+		flex-direction: row-reverse;
+	}
+	.stats h2 {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.playerLivesCount {
+		justify-content: center;
 	}
 }

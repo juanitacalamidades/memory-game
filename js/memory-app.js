@@ -6,11 +6,33 @@ const playerLivesCount = document.querySelector(".playerLivesCount");
 const playerInfo = document.querySelector(".player-info");
 const stats = document.querySelector(".stats");
 const restartButton = document.createElement("p");
+const messageContainer = document.querySelector('.message');
 let playerLives = 6;
+let gameOver = false;
 
-//Helper
+
+// Helper
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+
+//Mostrar mensaje al jugador
+const showMessage = (text, status) => {
+  
+    // Limpiar mensaje anterior si existe
+    messageContainer.classList.remove("hidden");
+  
+    // Crear nuevo mensaje
+    const msg = document.querySelector(".message p");
+    msg.textContent = text;
+    msg.className = status;
+   // msg.classList.add(status); // 'win' o 'lose'
+  
+    // Insertar en el contenedor y mostrar
+    messageContainer.appendChild(msg);
+
+};
+  
+  
 //Mostrar el botón
 const showRestartButton = async () => {
     await wait(500); // espera opcional para animaciones
@@ -45,7 +67,7 @@ const renderLives = () => {
     }
 };
 
-//Generar las cartas
+// Generar las cartas
 // 10 cards en total
 const getData = () => [
     {imgSrc: './img/Cubo.png', name: "cubo"},
@@ -69,7 +91,7 @@ const randomize = () => {
     return cardData;
 };
 
-//Generar cartas en el DOM
+// Generar cartas en el DOM
 const cardGenerator = () => {
     renderLives();
     const cardData = randomize();
@@ -100,7 +122,7 @@ const cardGenerator = () => {
 
 };
 
-//Comprobar cartas iguales
+// Comprobar cartas iguales
 const checkCards = async (e) => {
     const clickedCard = e.target;
     
@@ -139,6 +161,7 @@ const checkCards = async (e) => {
             renderLives();
     
             if(playerLives === 0) {
+                gameOver = true; 
                 await wait(600); // espera a que setTimeout de las cartas fallidas termine
 
                 const allCards = document.querySelectorAll(".card");
@@ -151,23 +174,27 @@ const checkCards = async (e) => {
 
                 // Espera un poco para que se vea el efecto
                 await wait(600);
+                showMessage("YOU LOSE ...", "lose");
                 await showRestartButton();
-            }
-          
+            }    
+            
         }
     }
     checkWin();
 };
-//Comprobar si hemos ganado
+// Comprobar si hemos ganado
 const checkWin = () => {
+    if(gameOver) return;
     const matchedCards = document.querySelectorAll(".toggleCard");
-    if (matchedCards.length === 10) {
+    if (matchedCards.length === 12) {
         console.log("has ganado");
-        
+        showMessage("YOU WIN!", "win");
     }
 };
-//Reiniciar
+// Reiniciar
 const restart = () => {
+    gameOver = false;
+    messageContainer.classList.add("hidden");
     stats.style.display = "flex";
     let cardData = randomize();
     let faces = document.querySelectorAll(".face");
@@ -176,6 +203,7 @@ const restart = () => {
     section.style.pointerEvents = "all";
     cardData.forEach((item, index) => {
         cards[index].classList.remove("toggleCard");
+
         //Adjuntar la info a las cartas para la nueva distribución
         setTimeout(() => {
             cards[index].style.pointerEvents = "all";
