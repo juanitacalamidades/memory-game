@@ -340,7 +340,8 @@ body {
 	max-width: 100%
 } */
 .restart:hover {
-	background-color: var(--color-naples-yellow);
+	background-color: var(--color-tyrian-purple);
+	color: white;
 	cursor: pointer;
 	transform: translate(10px, 10px);
 	box-shadow: none;

@@ -24,6 +24,7 @@ window.addEventListener("resize", createGrid);
 
 //Celda en relieve
 const randomPop = () => {
+  const cells = document.querySelectorAll('.grid-cell');
   const randomIndex = Math.floor(Math.random() * cells.length);
   const selected = cells[randomIndex];
 
@@ -54,9 +55,7 @@ background.addEventListener("click", (e) => {
     const cell = e.target;
     cell.classList.add("pop-forward");
 
-    setTimeout(() => {
-      setRandomBackground(cell);
-    }, 100);
+    setRandomBackground(cell);
 
     setTimeout(() => {
       cell.classList.remove("pop-forward");
