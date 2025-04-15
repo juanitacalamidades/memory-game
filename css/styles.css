@@ -218,7 +218,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column-reverse;
-	gap: 50px;
+	gap: 10px;
 	perspective: 800px;
 	transform-style: preserve-3d;
 }
