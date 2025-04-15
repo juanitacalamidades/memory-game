@@ -17,7 +17,7 @@ a {
 }
 body {
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh; /*dynamic viewport para controlar la barra de navegación en móvil*/
 	font-size: 16px;
 }
 
@@ -67,6 +67,9 @@ body {
 	display: grid;
 	grid-template-columns: 50px 1fr 50px;
 	grid-template-rows: 50px 1fr 1fr 50px;
+}
+.home .intro {
+	width: fit-content;
 }
 .textual {
 	grid-column: 2 / 3;
@@ -154,20 +157,23 @@ body {
 	height: 100%;
 	background-color: var(--color-bright-pink);
 	z-index: -1;
-	animation: reveal 1s 0.8s 1 ease-out forwards;
+	animation: reveal 1s 0.5s 1 ease-out forwards;
 	
 }
 /*Cubos*/
 .illustration {
 	grid-column: 2 / 3;
 	grid-row: 3 / 4;
-	align-self: center;
+	height: 100%;          
+  	width: 100%;           
+  	align-self: stretch;   
 	justify-self: center;
 	animation: grow 2s linear;
 }
 .scene {
 	perspective: 1000px;
 	perspective-origin: 50% 50%;
+	margin-top: 2rem;
 
 }
 .cube {
@@ -213,19 +219,21 @@ body {
 
 /*------PLAYGROUND------*/
 .playground {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column-reverse;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	grid-template-rows: 60px 1fr 1fr 20px;
 	gap: 10px;
+	justify-items: center;
 	perspective: 800px;
 	transform-style: preserve-3d;
 }
 .playground nav {
+	height: 40px;
 	position: fixed;
 	top: 0;
 	left: 10px;
 	display: flex;
+    align-items: center;
 	margin: 25px 25px;
 	padding: 15px;
 	z-index: 3;
@@ -254,7 +262,7 @@ body {
 	left: -100%;
 	width: 100%;
 	height: 100%;
-	background-color: var(--color-bright-pink); /* o el color que prefieras */
+	background-color: var(--color-bright-pink);
 	z-index: -1;
 	transition: left 0.4s ease;
 }
@@ -265,12 +273,17 @@ body {
 	font-size: 1rem;
 }
 .playground .container {
-	/* margin-top: 100px; */
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
 	display: grid;
 	grid-template-columns: repeat(3, 4rem);
 	grid-template-rows: repeat(4, 4rem);
 	gap: 1rem;
 	perspective: 800px;
+}
+.board {
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
 }
 .card {
 	position: relative;

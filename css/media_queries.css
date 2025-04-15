@@ -15,6 +15,9 @@ A continuación, están los media queries para tablet, desktop.
 		grid-template-columns: 50px auto auto 50px;
 		grid-template-rows: 1fr auto 1fr;
 	}
+	.home .intro {
+		width: fit-content;
+	}
 	.title {
 		font-size: 4rem;
 		line-height: 4.5rem;
@@ -55,6 +58,9 @@ A continuación, están los media queries para tablet, desktop.
 		font-size: 2rem;
 	}
 	.illustration {
+		width: auto;
+		height: auto;
+		align-self: center;
 		grid-column: 3 / 4;
 		grid-row: 1 / 4;
 	}
@@ -90,6 +96,10 @@ A continuación, están los media queries para tablet, desktop.
 		overflow: hidden;
 		width: 100vw;
 		height: 100vh;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
 		gap: 30px;
 
 	}
@@ -98,7 +108,7 @@ A continuación, están los media queries para tablet, desktop.
 		grid-template-columns: repeat(4, 8rem);
 		grid-template-rows: repeat(3, 8rem);
 		grid-gap: 2rem;
-		margin-top: 0px;
+		margin-top: 100px;
 		perspective: 800px;
 	}
 	.player-info .stats {
@@ -116,12 +126,13 @@ A continuación, están los media queries para tablet, desktop.
 
 /*-----Desktop-----*/
 @media (min-width: 1200px) {
-	.container {
+	.home .container {
 		grid-template-columns: 200px auto auto 200px;
 	} 
 	.textual {
 		grid-column: 2 / 3;
 		grid-row: 2 / 3;
+		justify-content: end;
 	}
 	.subtitle{
 		letter-spacing: 0.3rem;
