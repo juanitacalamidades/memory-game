@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./cover.png" alt="Memory Game cover" width="100%" />
+  <img src="./MemoryGameFront.png" alt="Memory Game cover" width="100%" />
 </p>
 
 # 🧠 Memory Game
