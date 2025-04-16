@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./cover.png" alt="Memory Game cover" width="100%" />
+</p>
+
 # 🧠 Memory Game
 
 Bienvenido/a a **Memory Game**, un juego de cartas interactivo inspirado en figuras geométricas en 3D. Diseñado con una estética nostálgica de cuaderno cuadriculado, animaciones suaves y un entorno responsive. Ideal para entrenar la memoria y disfrutar de una experiencia visual única.
